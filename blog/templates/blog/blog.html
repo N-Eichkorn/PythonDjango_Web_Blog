@@ -1,0 +1,21 @@
+{% include "blog/styles.html" %}
+<body>
+    <div class="header">
+        <h1>Narwahl INK</h1>
+    </div>
+    {% if latest_post_list %}
+    
+        {% for post in latest_post_list %}
+        <div class="item">
+            <div class="headline"><h1>{{ post.headline }}</h1><hr></div>
+            <div class="content">{{post.content}}</div>
+            <br>
+            <a class="content" href="/blog/{{ post.id }}">Kommentare ansehen!</a>
+            <p class="date">{{post.date}}</p>
+        </div>
+        {% endfor %}
+    
+    {% else %}
+        <p>No posts are available.</p>
+    {% endif %} 
+</body>

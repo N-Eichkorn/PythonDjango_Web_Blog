@@ -1,0 +1,32 @@
+{% include "blog/styles.html" %}
+<body>
+{% if post %}
+    <div class="item">
+        <div class="headline"><h1>{{ post.headline }}</h1><hr></div>
+        <div class="content">{{post.content}}</div>
+        <p class="date">{{post.date}}</p>
+        <h2>Kommentare:</h2>
+        <table class="tg">
+            <tbody>
+            {% for comment in comments %}
+              <tr>
+                <td class="tg-0lax">{{comment.author}}<br>{{comment.date}}</td>
+                <td class="tg-0lax">{{comment.content}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        <h2>Neuer Kommentar</h2>
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Senden</button>
+        </form>
+    </div>
+
+    
+{% else %}
+    <p>This Post is not available</p>
+{% endif %} 
+</body>
